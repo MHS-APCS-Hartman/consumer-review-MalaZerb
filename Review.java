@@ -98,6 +98,35 @@ public class Review {
     }
   }
   
+  public static double totalSentiment(String fileName)
+    {
+     String file = textToString(fileName);
+     String word = "";
+     String space = " ";
+     double totalVal = 0.0;
+     
+     for(int i=0 ; i < file.length(); i++)
+     {
+         
+         String letter = file.substring(i, i+1);
+         
+         if(letter.equals(space))
+         {
+            getPunctuation(word);
+            removePunctuation(word);
+            totalVal+= sentimentVal(word);
+            word= "";
+           
+         }
+         else
+         {
+            word+= letter;
+         }
+     }
+     return totalVal;
+    }
+
+  
   /**
    * Returns the ending punctuation of a string, or the empty string if there is none 
    */
