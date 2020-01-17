@@ -165,4 +165,25 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  /** 
+  *Takes the word that is labeled, "*", and replaces it with a random adjective
+  */
+  public static string fakeReview(String fileName)
+  {
+    string placeHolder= "";
+    string space = " ";
+    for(int i = 0; i<fileName.length(); i++)
+    string nextLetter = fileName.substring(i, i+1);
+    {
+      if(nextletter == *)
+      {
+        if(nextLetter.equals(space))
+        {
+        
+        }
+      }
+    
+    }
+  
+  }
 }
