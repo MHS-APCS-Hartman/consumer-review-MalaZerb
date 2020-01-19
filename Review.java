@@ -177,12 +177,13 @@ public class Review {
     {
       if(nextletter == *)
       {
-        if(nextLetter.equals(space))
+          if(nextLetter.equals(space))
         {
-        
+           placeHolder = randomAdjective();
         }
+        placeHolder+= nextLetter;
       }
-    
+       return placeHolder;
     }
   
   }
