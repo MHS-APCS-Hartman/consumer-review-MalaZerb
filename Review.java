@@ -168,25 +168,28 @@ public class Review {
   /** 
   *Takes the word that is labeled, "*", and replaces it with a random adjective
   */
-  public static string fakeReview(String fileName)
+    public static String fakeReview(String fileName)
   {
-    
-    string placeHolder= "";
-    string space = " ";
-    for(int i = 0; i<fileName.length(); i++)
-    string nextLetter = fileName.substring(i, i+1);
+    String file = textToString(fileName);
+    String placeHolder= "";
+    String space = " ";
+    for(int i = 0; i<file.length(); i++)
     {
-      if(nextletter.equals("*"))
+    String Letter = file.substring(i, i+1);
+
+      if(Letter.equals("*"))
       {
-          if(nextLetter.equals(space))
+         
+          if(Letter.equals(space))
         {
            placeHolder = randomAdjective();
         }
-        placeHolder+= nextLetter;
+        
       }
-       return placeHolder;
+      placeHolder+= Letter;
+      
     }
-    placeHolder+= nextLetter;
+    return placeHolder;
   
   }
 }
