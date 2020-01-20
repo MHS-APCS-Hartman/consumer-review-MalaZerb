@@ -170,12 +170,13 @@ public class Review {
   */
   public static string fakeReview(String fileName)
   {
+    
     string placeHolder= "";
     string space = " ";
     for(int i = 0; i<fileName.length(); i++)
     string nextLetter = fileName.substring(i, i+1);
     {
-      if(nextletter == *)
+      if(nextletter.equals("*"))
       {
           if(nextLetter.equals(space))
         {
@@ -185,6 +186,7 @@ public class Review {
       }
        return placeHolder;
     }
+    placeHolder+= nextLetter;
   
   }
 }
