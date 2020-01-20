@@ -98,16 +98,16 @@ public class Review {
     }
   }
   
-    public static double totalSentiment(String fileName)
+   public static double totalSentiment(String fileName)
     {
-     string file = textToString(fileName);
+     String file = textToString(fileName);
      String word= "";
-     string space = " ";
+     String space = " ";
      double totalVal = 0.0;
      for(int i=0 ; i<file.length(); i++)
      {
-         String letter =simpleReview.subString(i, i+1);
-         if(letter.equals(space))
+         String letter =file.substring(i, i+1);
+         if(letter.equals(space)|| i+1 == file.length())
          {
           totalVal += sentimentVal(removePunctuation(word));
           word = "";
@@ -117,8 +117,10 @@ public class Review {
          {
             word += letter;
          }
+         
      }
- }
+     return totalVal;
+    }
 
   
   /**
