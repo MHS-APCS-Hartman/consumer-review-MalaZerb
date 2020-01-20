@@ -98,33 +98,27 @@ public class Review {
     }
   }
   
-  public static double totalSentiment(String fileName)
+    public static double totalSentiment(String fileName)
     {
-     String file = textToString(fileName);
-     String word = "";
-     String space = " ";
+     string file = textToString(fileName);
+     String word= "";
+     string space = " ";
      double totalVal = 0.0;
-     
-     for(int i=0 ; i < file.length(); i++)
+     for(int i=0 ; i<file.length(); i++)
      {
-         
-         String letter = file.substring(i, i+1);
-         
+         String letter =simpleReview.subString(i, i+1);
          if(letter.equals(space))
          {
-            getPunctuation(word);
-            removePunctuation(word);
-            totalVal+= sentimentVal(word);
-            word= "";
+          totalVal += sentimentVal(removePunctuation(word));
+          word = "";
            
          }
          else
          {
-            word+= letter;
+            word += letter;
          }
      }
-     return totalVal;
-    }
+ }
 
   
   /**
