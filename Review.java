@@ -104,10 +104,11 @@ public class Review {
      String word= "";
      String space = " ";
      double totalVal = 0.0;
-     for(int i=0 ; i<file.length(); i++)
+     for(int i=0 ; i<file.length(); i++) //This loops iterates through each letter of the string
      {
          String letter =file.substring(i, i+1);
-         if(letter.equals(space)|| i+1 == file.length())
+         if(letter.equals(space)|| i+1 == file.length()) //once it reaches the end of the string it removes all punctuation and gets 
+                                                        //the total sentiment value of the whole phrase, and the word resets.
          {
           totalVal += sentimentVal(removePunctuation(word));
           word = "";
@@ -115,7 +116,7 @@ public class Review {
          }
          else
          {
-            word += letter;
+            word += letter; //otherwise the letters are stored into the string word
          }
          
      }
