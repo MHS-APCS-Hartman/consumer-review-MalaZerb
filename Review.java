@@ -171,6 +171,7 @@ public class Review {
     String inputReview = textToString(fileName);
     String word= "";
     String outputReview = " ";
+    String prev= "";
     for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
     {
     String Letter = inputReview.substring(i, i+1);
@@ -178,26 +179,50 @@ public class Review {
     if(Letter.equals(" "))//end of word  
         {
            int totalSentiment= (int)totalSentiment(fileName);
+            
            if(word.substring(0,1).equals("*")&& totalSentiment <0)// if the begging of the word has a star and 
            {                                                      //has a total sentiment below zero, the word is replaced with a negative adjective
-            word = randomNegativeAdj();
+            
+            while(sentimentVal(word)< sentimentVal(prev))//This loops until the previous adjective has a larger sentimental than word, and word is replaced with a stornger negative adjective
+            {
+               if(sentimentVal(word)>sentimentVal(prev))
+                {
+                word = randomNegativeAdj();
+                }
+            }
+            //word = randomNegativeAdj();
            }
            else if(word.substring(0,1).equals("*")&& totalSentiment >0)// if the begging of the word has a star and
                                                                        // has a total sentiment above zero, the word is replaced with a positive adjective
            {
-             word = randomPositiveAdj(); 
-
-           }
-           outputReview+= word + " ";// the word is stored into output review and reset
-           word = "";    
-         }
-          else
+             while(sentimentVal(word)< sentimentVal(prev))//This loops until the Random adjective has a larger sentimental than word, and word is replaced with a stornger positive adjective
             {
-              word+= Letter; //otherwise store next letter into word
+              if(sentimentVal(word)>sentimentVal(prev))
+              {
+                word = randomPositiveAdj(); 
+               }
+             
+
             }
+            //word = randomPositiveAdj();
+               
+           }
+            outputReview+= word + " ";// the word is stored into output review and reset
+            word = "";
+            prev = "";
          }
-           return  outputReview;
-  
+          
+      else
+      {
+      word+= Letter;
+      prev+= Letter;    //otherwise store next letter into word
+      }
+        
+     
+              
+    }
+    return  outputReview;
+
   }
 
 }
