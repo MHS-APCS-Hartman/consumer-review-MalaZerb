@@ -179,7 +179,7 @@ public static String fakeReview(String fileName)
 
     if(Letter.equals(" "))//end of word  
         {
-           //word = removePunctuation(word);
+          
            if(word.substring(0,1).equals("*"))// if the begging of the word has a string, replace the word with an adjective
            {
             word = randomAdjective();
