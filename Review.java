@@ -165,4 +165,39 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+   
+  public static String fakeReviewStronger(String fileName)
+  {
+    String inputReview = textToString(fileName);
+    String word= "";
+    String outputReview = " ";
+    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
+    {
+    String Letter = inputReview.substring(i, i+1);
+
+    if(Letter.equals(" "))//end of word  
+        {
+           int totalSentiment= (int)totalSentiment(fileName);
+           if(word.substring(0,1).equals("*")&& totalSentiment <0)// if the begging of the word has a star and 
+           {                                                      //has a total sentiment below zero, the word is replaced with a negative adjective
+            word = randomNegativeAdj();
+           }
+           else if(word.substring(0,1).equals("*")&& totalSentiment >0)// if the begging of the word has a star and
+                                                                       // has a total sentiment above zero, the word is replaced with a positive adjective
+           {
+             word = randomPositiveAdj(); 
+
+           }
+           outputReview+= word + " ";// the word is stored into output review and reset
+           word = "";    
+         }
+          else
+            {
+              word+= Letter; //otherwise store next letter into word
+            }
+         }
+           return  outputReview;
+  
+  }
+
 }
