@@ -172,22 +172,22 @@ public class Review {
    //if sentiment val is 
    int totalSentiment = (int) totalSentiment(fileName);
   
-   if(totalSentiment < 0)
+   if(totalSentiment < 0) //Reviews with multiple negative words like simple review would return either a sentiment value of 0 or lower
    {
      return 1;
    }
-   else if(totalSentiment < 5)
+   else if(totalSentiment < 5) //Reviews with a balanced amount of negative and positive words like 26West Review would have sentiment  values greater than 0, but less than 5
    {
     return 2; 
    }
    
-   else if(totalSentiment < 15 )
+   else if(totalSentiment < 15 ) //Reviews with more positive words than neagtive words had total sentiment greater than 5 but less than 15
    {
     return 3;
    }
    else
    {
-     return 4; 
+     return 4; //Review with mostly positive words had a sentimental value of 20 or higher
    }
  }
 
