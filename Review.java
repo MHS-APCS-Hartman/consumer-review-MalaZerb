@@ -180,7 +180,7 @@ public class Review {
         {
            double totalSentiment= sentimentVal(word);
             
-           if(word.substring(0,1).equals("*"))// if the begging of the word has a star and 
+           if(word.substring(0,1).equals("*"))// if the begging of the word has a star
            {       
               word = Review.removePunctuation(word);              
               String prev = word;
@@ -202,7 +202,9 @@ public class Review {
                   word = randomNegativeAdj();
                 
                }
+               
               }
+             
 
             }
                         
