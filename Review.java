@@ -184,7 +184,7 @@ public static String fakeReview(String fileName)
            {
             word = randomAdjective();
            } 
-           outputReview+= word + " ";//
+           outputReview+= word + " "; //this changed adjective is stored into the output review, and then reseted
            word = "";    
          }
      else
