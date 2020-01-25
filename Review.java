@@ -98,7 +98,7 @@ public class Review {
     }
   }
   
-   public static double totalSentiment(String fileName)
+  public static double totalSentiment(String fileName)
     {
      String file = textToString(fileName);
      String word= "";
@@ -120,7 +120,9 @@ public class Review {
          }
          
      }
-     return totalVal;
+      removePunctuation(word); 
+      totalVal += sentimentVal(word); 
+      return totalVal;
     }
 
   
