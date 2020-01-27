@@ -165,6 +165,41 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+
+  /** 
+  *Takes the word that is labeled, "*", and replaces it with a random adjective
+  */
+public static String fakeReview(String fileName)
+  {
+    String inputReview = textToString(fileName);
+    String word= "";
+    String outputReview = " ";
+    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
+    {
+    String Letter = inputReview.substring(i, i+1);
+
+    if(Letter.equals(" "))//end of word  
+        {
+          
+           if(word.substring(0,1).equals("*"))// if the begging of the word has a string, replace the word with an adjective
+           {
+            word = randomAdjective();
+           } 
+           outputReview+= word + " "; //this changed adjective is stored into the output review, and then reseted
+           word = "";    
+         }
+     else
+     {
+      word+= Letter; //otherwise store next letter into word
+     }
+        
+     
+              
+    }
+    return  outputReview;
+  
+  }
+
     public static int starRating(String fileName)
    {
    
@@ -190,6 +225,7 @@ public class Review {
      return 4; 
    }
  }
+
 
 
 }
