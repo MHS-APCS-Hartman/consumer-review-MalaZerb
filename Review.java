@@ -165,6 +165,7 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+
   /** 
   *Takes the word that is labeled, "*", and replaces it with a random adjective
   */
@@ -198,5 +199,33 @@ public static String fakeReview(String fileName)
     return  outputReview;
   
   }
+
+    public static int starRating(String fileName)
+   {
+   
+   //get total sentiment 
+   
+   int totalSentiment = (int) totalSentiment(fileName);
+  
+   if(totalSentiment < 0) //Reviews with multiple negative words like simple review would return either a value of 0 or lower
+   {
+     return 1;
+   }
+   else if(totalSentiment < 5) //Reviews with a balanced amount of negative and positive words like 26West Review would have values 
+   {
+    return 2; 
+   }
+   
+   else if(totalSentiment < 15 ) //Any review that has more positive words has a 3 star rating
+   {
+    return 3;
+   }
+   else
+   {
+     return 4; 
+   }
+ }
+
+
 
 }
