@@ -166,65 +166,7 @@ public class Review {
       return randomNegativeAdj();
     }
   }
-   
-  public static String fakeReviewStronger(String fileName)
-  {
-    String inputReview = textToString(fileName);
-    String word= "";
-    String outputReview = " ";
-    
-    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
-    {
-    String Letter = inputReview.substring(i, i+1);
-
-    if(Letter.equals(" "))//end of word  
-        {
-           double totalSentiment= sentimentVal(word);
-            
-           if(word.substring(0,1).equals("*"))// if the begging of the word has a star
-           {       
-              word = Review.removePunctuation(word);              
-              String prev = word;
-              word = randomAdjective();
-               if(totalSentiment>0)
-              {
-                 while(sentimentVal(word)< sentimentVal(prev))//This loops until the previous adjective has a larger sentimental than word, and word is replaced with a stornger positive adjective
-                  {
-                     word = randomPositiveAdj();
-                
-                  }
-               }
-               
-              else if(totalSentiment<0)
-              {
-               
-               while(sentimentVal(word)< sentimentVal(prev))//This loops until the previous adjective has a larger sentimental than word, and word is replaced with a stornger negative adjective
-                {
-                  word = randomNegativeAdj();
-                
-               }
-               
-              }
-             
-
-            }
-                        
-               outputReview+= word + " ";// the word is stored into output review and reset
-               word = "";
-        
-        } 
-      else
-      {
-      word+= Letter;
-          //otherwise store next letter into word
-      }
-        
-     }
-              
-    
-    return  outputReview;
   
-   }
 
 
 }
@@ -397,41 +339,31 @@ public class Review {
     }
   }
 
-  /** 
-  *Takes the word that is labeled, "*", and replaces it with a random adjective
-  */
-public static String fakeReview(String fileName)
-  {
-    String inputReview = textToString(fileName);
-    String word= "";
-    String outputReview = " ";
-    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
+   public static double totalSentiment(String fileName)
     {
-    String Letter = inputReview.substring(i, i+1);
-
-    if(Letter.equals(" "))//end of word  
-        {
-          
-           if(word.substring(0,1).equals("*"))// if the begging of the word has a string, replace the word with an adjective
-           {
-            word = randomAdjective();
-           } 
-           outputReview+= word + " "; //this changed adjective is stored into the output review, and then reseted
-           word = "";    
-         }
-     else
+     String file = textToString(fileName);
+     String word= "";
+     String space = " ";
+     double totalVal = 0.0;
+     for(int i=0 ; i<file.length(); i++)
      {
-      word+= Letter; //otherwise store next letter into word
+         String letter =file.substring(i, i+1);
+         if(letter.equals(space)|| i+1 == file.length())
+         {
+          totalVal += sentimentVal(removePunctuation(word));
+          word = "";
+           
+         }
+         else
+         {
+            word += letter;
+         }
+         
      }
-        
-     
-              
+     return totalVal;
     }
-    return  outputReview;
   
-  }
-
-    public static int starRating(String fileName)
+   public static int starRating(String fileName)
    {
    
    //get total sentiment 
@@ -456,6 +388,103 @@ public static String fakeReview(String fileName)
      return 4; 
    }
  }
+  
+  
+
+  /** 
+  *Takes the word that is labeled, "*", and replaces it with a random adjective
+  */
+public static String fakeReview(String fileName)
+  {
+    String inputReview = textToString(fileName);
+    String word= "";
+    String outputReview = " ";
+    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
+    {
+    String Letter = inputReview.substring(i, i+1);
+
+    if(Letter.equals(" "))//end of word  
+        {
+           
+           if(word.substring(0,1).equals("*"))// if the begging of the word has a string, replace the word with an adjective
+           {
+            word = randomAdjective();
+           } 
+           outputReview+= word + " ";//
+           word = "";    
+         }
+     else
+     {
+      word+= Letter; //otherwise store next letter into word
+     }
+        
+     
+              
+    }
+    return  outputReview;
+  
+  }
+  
+
+
+  public static String fakeReviewStronger(String fileName)
+  {
+    String inputReview = textToString(fileName);
+    String word= "";
+    String outputReview = " ";
+    
+    for(int i = 0; i<inputReview.length(); i++)//Loops through each letter in the string
+    {
+    String Letter = inputReview.substring(i, i+1);
+
+    if(Letter.equals(" "))//end of word  
+        {
+           double totalSentiment= sentimentVal(word);
+            
+           if(word.substring(0,1).equals("*"))// if the begging of the word has a star
+           {       
+              word = Review.removePunctuation(word);              
+              String prev = word;
+              word = randomAdjective();
+               if(totalSentiment>0)
+              {
+                 while(sentimentVal(word)< sentimentVal(prev))//This loops until the previous adjective has a larger sentimental than word, and word is replaced with a stornger positive adjective
+                  {
+                     word = randomPositiveAdj();
+                
+                  }
+               }
+               
+              else if(totalSentiment<0)
+              {
+               
+               while(sentimentVal(word)< sentimentVal(prev))//This loops until the previous adjective has a larger sentimental than word, and word is replaced with a stornger negative adjective
+                {
+                  word = randomNegativeAdj();
+                
+               }
+               
+              }
+             
+
+            }
+                        
+               outputReview+= word + " ";// the word is stored into output review and reset
+               word = "";
+        
+        } 
+      else
+      {
+      word+= Letter;
+          //otherwise store next letter into word
+      }
+        
+     }
+              
+    
+    return  outputReview;
+  
+   }
 
 
 
